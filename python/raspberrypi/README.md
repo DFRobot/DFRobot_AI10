@@ -29,7 +29,7 @@ Provides an Arduino library that has the following features:
 1. Download the library to Raspberry Pi first before use.
 
 ```
-sudo git clone https:
+sudo git clone https://github.com/DFRobot/DFRobot_AI10
 ```
 
 1. Open and run the routine. To execute a routine demo_x.py, enter python demo_x.py in the command line. For example, to execute the routine continuous_recognition.py, you need to enter:
