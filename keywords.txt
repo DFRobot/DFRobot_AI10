@@ -1,0 +1,49 @@
+#######################################
+# Syntax Coloring DFRobot_AI10
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+DFRobot_AI10_UART	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+enrollUser	KEYWORD2
+getAllUserIDs KEYWORD2
+enableFaceFrame KEYWORD2
+getRecognitionResult KEYWORD2
+startContinuousFaceRecognition KEYWORD2
+deleteUser KEYWORD2
+deleteAllUser KEYWORD2
+XORCheckSum KEYWORD2
+XORCheck	KEYWORD2
+signedAccount KEYWORD2
+getUserInfo	KEYWORD2
+sendPackage	KEYWORD2
+recvPackage KEYWORD2
+recognitionDataAnalysis KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+eSuccess	LITERAL1
+eRejected	LITERAL1
+eAborted	LITERAL1
+eFailedCamera	LITERAL1
+eFailedUnknow	LITERAL1
+eFailedInvalidParam	LITERAL1
+eFailedNoMemory	LITERAL1
+eFailedUnknowUser	LITERAL1
+eFailedMaxUser	LITERAL1
+eFailedFaceEnrolled	LITERAL1
+eFailedLiveCheck	LITERAL1
+eFailedTimeout	LITERAL1
+eFailedDetectQR	LITERAL1
+eResult_t	LITERAL1
+eNull	LITERAL1
+eFace	LITERAL1
+ePalm	LITERAL1
+eQR	LITERAL1
+
