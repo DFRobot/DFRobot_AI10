@@ -189,4 +189,4 @@ python3 continuous_recognition.py
 
 ## 创作者
 
-Written by zhixinliu(zhixinliu@dfrobot.com), 2021. (Welcome to our [website](https://www.dfrobot.com/))
+Written by jiali(zhixinliu@dfrobot.com), 2025. (Welcome to our [website](https://www.dfrobot.com/))

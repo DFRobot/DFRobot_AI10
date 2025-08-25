@@ -1,5 +1,5 @@
 /*!
- * @file SingleRegisteredUser.ino
+ * @file singleRegisteredUser.ino
  * @brief This is an example of using the DFRobot_AI10 library to enroll a single registered user.
  * @copyright	Copyright (c) 2025 DFRobot Co.Ltd (http://www.dfrobot.com)
  * @license The MIT License (MIT)

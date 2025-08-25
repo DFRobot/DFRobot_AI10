@@ -149,4 +149,4 @@ Micro:bit          |             | nonsupport uart |             |
 
 ## Credits
 
-Written by zhixinliu(zhixinliu@dfrobot.com), 2021. (Welcome to our [website](https://www.dfrobot.com/))
+Written by jiali(zhixinliu@dfrobot.com), 2025. (Welcome to our [website](https://www.dfrobot.com/))

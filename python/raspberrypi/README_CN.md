@@ -1,4 +1,4 @@
-# DFRobot_C4001
+# DFRobot_AI10
 - [English Version](./README.md)
 
 这是一款高精度AI视觉识别模组，采用双200万像素摄像头配合先进的深度学习算法，具有动静目标均可精准识别的特点。相比传统视觉传感器，其抗干扰能力显著提升，不受环境光照变化、温度波动或复杂背景等因素影响。无论是快速移动的人体、静态人脸还是细微的掌静脉特征，模组都能实现快速、稳定的检测识别。
@@ -45,10 +45,10 @@ python3 continuous_recognition.py
 ## 方法
 
 ```python
- def begin(self):
-  '''!
-    @brief begin 
-  '''
+  def begin(self):
+    '''!
+      @brief begin 
+    '''
 
   def start_continuous_face_recognition(self,timeout):
     '''!
@@ -180,4 +180,4 @@ python3 continuous_recognition.py
 
 ## 创作者
 
-Written by zhixinliu(zhixinliu@dfrobot.com), 2021. (Welcome to our [website](https://www.dfrobot.com/))
+Written by jiali(zhixinliu@dfrobot.com), 2025. (Welcome to our [website](https://www.dfrobot.com/))

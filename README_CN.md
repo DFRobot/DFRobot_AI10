@@ -84,7 +84,7 @@
    * @fn getRecognitionResult
    * @brief 连续识别结果
    * @param timeout 超时时间(单位:秒)
-   * @return sRcognitionData_t
+   * @return sRecognitionData_t
    * @n       result    识别结果
    * @n       userData  用户信息
    * @n       noteData  备注信息
@@ -95,7 +95,7 @@
    * @n        ePalm      掌纹
    * @n        eQR       二维码
   */
-  sRcognitionData_t getRecognitionResult(uint8_t timeout);
+  sRecognitionData_t getRecognitionResult(uint8_t timeout);
 
   /**
    * @fn startContinuousFaceRecognition
@@ -147,4 +147,4 @@ Micro:bit          |              | nonsupport uart |             |
 
 ## 创作者
 
-Written by zhixinliu(zhixinliu@dfrobot.com), 2021. (Welcome to our [website](https://www.dfrobot.com/))
+Written by zhixinliu(zhixinliu@dfrobot.com), 2025. (Welcome to our [website](https://www.dfrobot.com/))
