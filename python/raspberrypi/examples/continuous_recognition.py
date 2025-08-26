@@ -38,6 +38,9 @@ def loop():
   After the person moves away for x seconds, the recognition stops and the module continues with low-power face detection.
   the range is 3-20s. 
   '''
+  print("=================================")
+  print("Recognize...")
+  
   recDat = recognize.start_continuous_face_recognition(5)#5s timeout
 
   #Print the recognition result
@@ -53,10 +56,20 @@ def loop():
         print("Recognition type: Plam")
       print("User ID: ", recDat.uid) 
       print("User name: ",recDat.user_name)  
-      print("Admin Permission: ","Normal" if recDat.admin == recognize.NORMAL else "Admin")  
+      print("Admin Permission: ","Normal" if recDat.admin == recognize.NORMAL else "Admin")
 
   else:
-    print("recognition ...")
+    print("Recognition failed!")
+    print("Error code: ", recDat.result)
+    if recDat.result == 13:
+      print("Recognition timed out!")
+    elif recDat.result == 4:
+      print("Camera error!")
+    elif recDat.result == 12:
+      print("Live check failed!")
+    else:
+      print()
+  print("=================================")
 
   time.sleep(0.1)
 

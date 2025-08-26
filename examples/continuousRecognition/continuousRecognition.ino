@@ -51,6 +51,9 @@ void loop() {
   /* When a human face is detected,  the system automatically starts the recognition process.After the person moves away for
   x seconds, the recognition stops and the module continues with low-power face detection.the range is 3-20s. 
    */
+  Serial.println("=================================");
+  Serial.println("Recognize...");
+
   recDat = recognize.startContinuousFaceRecognition(/*timeout*/5);
 
   //Print the recognition result
@@ -73,7 +76,20 @@ void loop() {
     }
     
   }else{
-    Serial.println("Recognize...");
+    Serial.println("Recognition failed!");
+    Serial.print("Failed code: ");
+    Serial.print(recDat.result);
+    
+    if(recDat.result == eFailedTimeout){
+      Serial.println(" Recognition timed out!");
+    }else if(recDat.result == eFailedCamera){
+      Serial.println(" Camera error!");
+    }else if(recDat.result == eFailedLiveCheck){
+      Serial.println(" Live check failed!");
+    }else{
+      Serial.println();
+    }
   }
+  Serial.println("=================================");
 
 }

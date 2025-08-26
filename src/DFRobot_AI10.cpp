@@ -40,7 +40,6 @@ sUserData_t DFRobot_AI10::enrollUser(uint8_t admin, const char* userName, uint8_
     uData.result = enrollResultData.result;
   }
   return uData;
-  
 }
 
 sEnrollResultData_t DFRobot_AI10::signedAccount(uint8_t CMD, uint8_t admin, const char* userName, uint8_t faceDir, uint8_t timeout)
@@ -286,7 +285,7 @@ sRecvPack_t DFRobot_AI10::recvPackage(uint8_t timeout)
   uint16_t recvLen = 0;
   uint32_t nowtime = millis();
 
-  while(millis() - nowtime < timeOut){
+  while(millis() - nowtime < timeOut + 500){
     recvLen = readReg(0,data, 2);
 
     if(recvLen > 0 && ((data[0] == SyncWord_H) && (data[1] == SyncWord_L))){

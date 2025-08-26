@@ -151,7 +151,7 @@ class DFRobot_AI10(object):
 
     self.send_package(data_buf,5)
     recv_pack = struct_recv_pack()
-    recv_pack = self.recv_package()
+    recv_pack = self.recv_package(timeout)
 
     return self.recognition_data_analysis(recv_pack)
 
@@ -186,7 +186,7 @@ class DFRobot_AI10(object):
 
     self.send_package(data_buf,5)
     recv_pack = struct_recv_pack()
-    recv_pack = self.recv_package()
+    recv_pack = self.recv_package(timeout)#timeout
 
     return self.recognition_data_analysis(recv_pack)
 
@@ -521,7 +521,7 @@ class DFRobot_AI10(object):
     recv_len = 0x00
 
     now_time = time.time()
-    while((time.time() - now_time) < timeout):
+    while((time.time() - now_time) < timeout + 0.5):
       data_buffer = [0x00] * 256
       data_buffer = self.read_reg(0,2)
 
