@@ -5,7 +5,7 @@ This is a high-precision AI visual recognition module, featuring dual 2-megapixe
 
 ![效果图](../../resources/images/FacePlamQR.jpg)
 
-## Product Link()
+## Product Link(https://www.dfrobot.com/product-2972.html)
 
     SKU：SEN0677
 

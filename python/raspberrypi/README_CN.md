@@ -6,7 +6,7 @@
 
 ![效果图](../../resources/images/FacePlamQR.jpg)
 
-## 产品链接()
+## 产品链接(https://www.dfrobot.com.cn/goods-4181.html)
 
     SKU：SEN0677
 
