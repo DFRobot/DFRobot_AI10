@@ -65,8 +65,8 @@ class struct_recognition_data:
 
 TIME_OUT                     =   0x64
 CMD_TIME_OUT                 =   0x03
-SyncWord_H                   =   0xEF
-SyncWord_L                   =   0xAA
+SYNCWORD_H                   =   0xEF
+SYNCWORD_L                   =   0xAA
 MID_RELAY                    =   0x00
 MID_NOTE                     =   0x01
 
@@ -266,7 +266,7 @@ class DFRobot_AI10(object):
     data_buf[3] = 0x00
 
     recv_pack = struct_recv_pack()
-    self.send_package(data_buf,4)   
+    self.send_package(data_buf,4)
     recv_pack = self.recv_package()
 
     all_data.result = recv_pack.result
@@ -525,7 +525,7 @@ class DFRobot_AI10(object):
       data_buffer = [0x00] * 256
       data_buffer = self.read_reg(0,2)
 
-      if (data_buffer[0] == SyncWord_H and data_buffer[1] == SyncWord_L) and len(data_buffer)  == 2:
+      if (data_buffer[0] == SYNCWORD_H and data_buffer[1] == SYNCWORD_L) and len(data_buffer)  == 2:
         data_buffer = self.read_reg(0,3)
         msg_id = data_buffer[0]
         recv_len = (data_buffer[1]<<8) | data_buffer[2]
@@ -558,7 +558,7 @@ class DFRobot_AI10(object):
     return recv_pack
 
   def send_package(self, data,len):
-    syncword_data = [SyncWord_H,SyncWord_L]
+    syncword_data = [SYNCWORD_H,SYNCWORD_L]
     parityCheck = [0x00]*2
     parityCheck[0] = self.xor_check_sum(data,len)
 

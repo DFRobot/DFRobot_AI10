@@ -19,6 +19,7 @@ from DFRobot_AI10 import *
 
 recognize = DFRobot_AI10_UART(115200)
 
+
 def setup():
   while (recognize.begin() == False):
     print("Sensor initialize failed!!")
