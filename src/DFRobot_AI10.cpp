@@ -49,7 +49,11 @@ sEnrollResultData_t DFRobot_AI10::signedAccount(uint8_t CMD, uint8_t admin, cons
   sEnrollResultData_t enrollResultData;
 
   uint8_t dataIndex = 0;
-  uint8_t data[50];
+  uint8_t *data = (uint8_t *)malloc(50 * sizeof(uint8_t));
+  if(data == NULL){
+    enrollResultData.result = eFailedNoMemory;
+    return enrollResultData;
+  }
 
   enrollData.admin = admin;
   strncpy((char*)enrollData.userName, userName, 20);
@@ -63,6 +67,7 @@ sEnrollResultData_t DFRobot_AI10::signedAccount(uint8_t CMD, uint8_t admin, cons
   dataIndex += date_size;
 
   sendPackage(data, dataIndex);
+  free(data);
   sRecvPack_t rPack = recvPackage(timeout);
 
     if(rPack.replyData.result == eSuccess){
@@ -85,7 +90,7 @@ sEnrollResultData_t DFRobot_AI10::signedAccount(uint8_t CMD, uint8_t admin, cons
 sAllUserID_t DFRobot_AI10::getAllUserIDs(void)
 {
   drvReset();
-  uint8_t data[20];
+  uint8_t data[10];
   uint16_t dataIndex = 0;
   uint8_t i = 0;
 
@@ -114,7 +119,7 @@ sAllUserID_t DFRobot_AI10::getAllUserIDs(void)
 bool DFRobot_AI10::deleteAllUser(void)
 {
   drvReset();
-  uint8_t data[20];
+  uint8_t data[10];
   uint16_t dataIndex = 0;
 
   data[dataIndex++] = DEL_ALL_USER;
@@ -134,7 +139,7 @@ bool DFRobot_AI10::deleteAllUser(void)
 sUserData_t DFRobot_AI10::getUserInfo(uint16_t UID)
 {
   drvReset();
-  uint8_t data[20];
+  uint8_t data[10];
   uint16_t dataIndex = 0;
     
   data[dataIndex++] = GET_USER_INFO;
@@ -160,7 +165,7 @@ sUserData_t DFRobot_AI10::getUserInfo(uint16_t UID)
 bool DFRobot_AI10::deleteUser(uint16_t UID)
 {
   drvReset();
-  uint8_t data[20];
+  uint8_t data[10];
   uint16_t dataIndex = 0;
 
   data[dataIndex++] = DEL_USER;
@@ -181,7 +186,7 @@ bool DFRobot_AI10::deleteUser(uint16_t UID)
 
 sRecognitionData_t DFRobot_AI10::getRecognitionResult(uint8_t timeout)
 {
-  uint8_t data[20];
+  uint8_t data[10];
   uint16_t dataIndex = 0;
   continueVerify = 0x00;
 
@@ -199,7 +204,8 @@ sRecognitionData_t DFRobot_AI10::getRecognitionResult(uint8_t timeout)
 
 sRecognitionData_t DFRobot_AI10::startContinuousFaceRecognition(uint8_t timeout)
 {
-  uint8_t data[256];
+  uint8_t data[10];
+
   uint16_t dataIndex = 0;
   continueVerify = 0x01;
 
@@ -210,6 +216,7 @@ sRecognitionData_t DFRobot_AI10::startContinuousFaceRecognition(uint8_t timeout)
   data[dataIndex++] = timeout;
 
   sendPackage(data, dataIndex);
+
   sRecvPack_t rPack= recvPackage(timeout);
 
   return recognitionDataAnalysis(rPack);
@@ -247,7 +254,7 @@ sRecognitionData_t DFRobot_AI10::recognitionDataAnalysis(sRecvPack_t rPack)
 
 bool DFRobot_AI10::enableFaceFrame(void)
 {
-  uint8_t data[20];
+  uint8_t data[10];
   uint16_t dataIndex = 0;
   
   data[dataIndex++] = SET_FACE__LOCATION_DISPLAY;
@@ -279,13 +286,17 @@ sRecvPack_t DFRobot_AI10::recvPackage(uint8_t timeout)
 {
   sRecvPack_t recvData;
   memset(&recvData, 0, sizeof(recvData));
-  uint8_t data[256];
+  uint8_t *data = (uint8_t *)malloc(256 * sizeof(uint8_t));
+  if(data == NULL){
+    recvData.replyData.result = eFailedNoMemory;
+    return recvData;
+  }
   uint16_t timeOut = timeout*1000;
 
   uint16_t recvLen = 0;
   uint32_t nowtime = millis();
 
-  while(millis() - nowtime < timeOut + 500){
+  while(millis() - nowtime < timeOut + 500UL){
     recvLen = readReg(0,data, 2);
 
     if(recvLen > 0 && ((data[0] == SyncWord_H) && (data[1] == SyncWord_L))){
@@ -296,11 +307,13 @@ sRecvPack_t DFRobot_AI10::recvPackage(uint8_t timeout)
         if(XORCheck(data, recvLen)){
           if(msg_id == MID_RELAY){
             memcpy(&recvData.replyData,&data[3],recvLen-1-3);
+            free(data);
             return recvData;
           }else if(msg_id == MID_NOTE){
             memcpy(&recvData.noteData,&data[3],recvLen-1-3);
           }else{
             recvData.replyData.result = eFailedUnknow;
+            free(data);
             return recvData;
           }
         }else{
@@ -310,6 +323,7 @@ sRecvPack_t DFRobot_AI10::recvPackage(uint8_t timeout)
         continue;
       }
   }
+  free(data);
   recvData.replyData.result = eFailedTimeout;
   return recvData;
 }
