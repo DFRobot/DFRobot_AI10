@@ -23,7 +23,7 @@
     SoftwareSerial mySerial(4, 5);
     DFRobot_AI10_UART recognize(&mySerial ,115200);
   #elif defined(ESP32)
-    DFRobot_AI10_UART recognize(&Serial1,/*rxD2*/25,/*txD3*/26);
+    DFRobot_AI10_UART recognize(&Serial1,115200,/*rxD2*/25,/*txD3*/26);
   #else
     DFRobot_AI10_UART recognize(&Serial1 ,115200);
   #endif
